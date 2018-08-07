@@ -1,0 +1,29 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "flash_alert.html" %}
+{% include "category_panel.html" %}
+<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-12">
+			{% if quantity != 1 %}
+			<h2>{{ category.name }} Items ({{ quantity }} items)
+			{% else %}
+			<h2>{{ category.name }} Items ({{ quantity }} item)
+			{% endif %}
+			{% if session.user_id %}
+			<div class="pull-right">
+				<a href = "{{ url_for('newMenuItem') }}">
+					<button class="btn btn-success primary">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 
+							Add Item
+					</button>
+				</a>
+			</div>
+			{% endif %}
+			</h2>
+		</div>
+	</div>
+	{% include "Menu_list.html" %}
+</div>
+
+{% endblock %}

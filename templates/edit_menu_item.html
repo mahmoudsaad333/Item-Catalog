@@ -1,0 +1,39 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="card-section">
+	<div class="row banner menu">
+		<div class="col-md-12 padding-none">
+			<h1>Edit Menu Item</h1>
+			<hr>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 padding-top">
+			<form method = "post">
+				<div class="form-group">
+					<label for="name">Name:</label>
+					<input type ="text" maxlength="50" class="form-control" name="name" value="{{ item.name }}">
+					<label for="description">Description:</label>
+					<textarea class="form-control" maxlength="250" rows="3" name="description">{{ item.description }}
+					</textarea>
+
+					<label for="price">Price:</label>
+					<div class="input-group">
+						<div class="input-group-addon">$</div>
+						<input type ="text" class="form-control" maxlength="10" name="price" value="{{ item.price }}">
+					</div>
+					{% include "category_form_list.html" %}
+					<button type="submit" class="btn btn-success" id="submit" type="submit">
+					<span class="glyphicon glyphicon-glass" aria-hidden="true"></span>Update</button>
+					<button class="btn btn-default delete">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 
+						<a href = "{{ url_for('showMenu') }}">
+							Cancel
+						</a>
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

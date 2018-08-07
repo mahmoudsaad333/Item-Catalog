@@ -1,0 +1,43 @@
+<ul class="list-group">
+	{% if items and quantity > 0 %}
+	    {% for i in items %}
+	    <li class="list-group-item">
+			<div class="row">
+				<div class="col-md-12">
+					<span class="name">
+						<a href="{{ url_for('showMenuItem', category_id=i.category_id, menu_item_id=i.id) }}" >
+							<h3>{{i.name}}</a><br><small>({{ i.category.name }})</small>
+							{% if i.user_id == session.user_id %}
+							<div class="pull-right">
+								<a href="{{ url_for('editMenuItem', category_id=i.category_id, menu_item_id=i.id) }}">
+									<button class="btn btn-default edit">
+										<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 
+											Edit
+									</button>
+								</a>
+								<a href="{{ url_for('deleteMenuItem', category_id=i.category_id, menu_item_id=i.id) }}">
+									<button class="btn btn-danger delete">
+										<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 
+											Delete
+									</button>
+								</a>
+							</div>
+							{% endif %}
+						</h3>
+					</span>
+					{% if creator %}
+					<div>
+						Created By:  {{ creator.email }}
+					{% endif %}		
+				</div>
+			</div>
+	    </li>
+	    {% endfor %}
+	{% else %}
+	<ul>
+	    <li class="list-group-item">
+	        You currently have no menu items.
+	    </li>
+	</ul>
+	{% endif %}
+</ul>
